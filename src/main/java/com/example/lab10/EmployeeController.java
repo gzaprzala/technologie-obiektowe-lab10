@@ -2,6 +2,8 @@ package com.example.lab10;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,11 +20,17 @@ public class EmployeeController {
     }
 
     @PostMapping("/listofemployees/add")
-    public void addEmployee(@RequestParam String firstName,
-                            @RequestParam String lastName,
-                            @RequestParam String employmentDate) {
+    public ResponseEntity<Employee> addEmployee(@RequestParam String firstName,
+                                                @RequestParam String lastName,
+                                                @RequestParam String employmentDate) {
+        if(firstName.isEmpty() || lastName.isEmpty() || employmentDate.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         Employee employee = new Employee(firstName, lastName, employmentDate);
         employeeService.addEmployee(employee);
+
+        return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
 }

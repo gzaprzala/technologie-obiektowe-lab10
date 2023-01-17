@@ -1,6 +1,6 @@
 package com.example.lab10;
 
-class Employee {
+public class Employee {
     private String firstName;
     private String lastName;
     private String employmentDate;

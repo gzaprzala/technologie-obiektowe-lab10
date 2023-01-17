@@ -2,7 +2,7 @@ package com.example.lab10;
 
 import java.util.List;
 
-class EmployeeService {
+public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
